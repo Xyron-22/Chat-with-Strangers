@@ -12,12 +12,13 @@ const SignUp = ({setUserId, color}) => {
     const [message, setMessage] = useState();
     const history = useNavigate();
           
+    const {VITE_BASE_URL} = import.meta.env;
                     
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (username !== "" && password !== "") {
             if (username.length > 8) return setMessage("Username must be 8 characters and below");
-            const {data} = await axios.post(`http://localhost:5001/${toggle ? "signin" : "signup"}`, {username, password});
+            const {data} = await axios.post(`${VITE_BASE_URL}/${toggle ? "signin" : "signup"}`, {username, password});
             if (data === "User already exist" || data === "User does not exist") return setMessage(data)
             localStorage.setItem("profile", JSON.stringify(data))
             setUserId(data);

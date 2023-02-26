@@ -12,6 +12,7 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
     const [searchUser, setSearchUser] = useState("");
     const history = useNavigate();
 
+    const {VITE_BASE_URL} = import.meta.env;
   
     const changeColor = (e) => {
       switch (e?.target?.innerText) {
@@ -30,7 +31,7 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
   const getIds = async (otherUserId, username) => {
     const getUserId = hideForm.id;
     const getOtherUserId = otherUserId;
-    const {data} = await axios.post("http://localhost:5001/createChat", {getUserId: getUserId, getOtherUserId});
+    const {data} = await axios.post(`${VITE_BASE_URL}/createChat`, {getUserId: getUserId, getOtherUserId});
     setOtherUser({id: otherUserId, username})
     setChatId(data);
   }
@@ -40,7 +41,7 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
     setUsers(users.filter((object) => object.username.includes(searchUser )))
    }
     else if (e.keyCode == 8) {
-      fetch("http://localhost:5001")
+      fetch(VITE_BASE_URL)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data.filter((object) => object.username.includes(searchUser)))
@@ -63,26 +64,25 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
 }, [userId])   
 
   useEffect(() => {
-    fetch("http://localhost:5001")
+    fetch(VITE_BASE_URL)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data)
       })
-    socket.emit("join_room", chatId) //chatId
+    socket.emit("join_room", chatId)
     // const interval = setInterval(() => {
-    //   fetch("http://localhost:5001")
+    //   fetch(VITE_BASE_URL)
     //   .then((response) => response.json())
     //   .then((data) => {
     //     console.log("this logs every 5 secs")
     //     setUsers(data)
     //   })
-    // }, 5000)
+    // }, 3000)
     // return () => {
     //   clearInterval(interval)
     // }
 }, [userId, chatId])
   
-  // console.log(showHidden)
 
     return (
         <div className="app-container">

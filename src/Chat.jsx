@@ -7,6 +7,7 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
     const [currentMessage, setCurrentMessage] = useState("");
     const [arrMessage, setArrMessage] = useState([]);
          
+    const {VITE_BASE_URL} = import.meta.env;
     
     const sendMessage = async () => {
         if(currentMessage !== "" && hideForm?.id !== undefined) {
@@ -17,8 +18,6 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
                 time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
             }
             await socket.emit("send_message", messageData);
-            // await socket.on("receive_message", async (data) => setArrMessage(data))
-            // const {data} = await axios.post("http://localhost:5001/chats", {author: userId.username, message: currentMessage, chatId})
             setArrMessage([...arrMessage, {author: hideForm?.username, message: currentMessage, time: messageData.time}])
             setCurrentMessage("");
         }
@@ -29,13 +28,11 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
             sendMessage();
         }
     }
-    // using axios inside the useeffect, do post method to send the arrMessage into the server and save it to the chatId's db
-
+ 
     useEffect(() => {
         const fetchChats = async () => {
             if (chatId) {
-                const {data} = await axios.post(`http://localhost:5001/getChats/${chatId}`);
-                console.log(data);
+                const {data} = await axios.post(`${VITE_BASE_URL}/getChats/${chatId}`);
                 setArrMessage(data);
             }
         }
@@ -44,7 +41,6 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
 
     useEffect(() => {
         socket.on("receive_message", (data) => {
-            console.log("data received from socket",data)
             setArrMessage(data)
     })
     }, [socket, chatId, otherUser])
@@ -52,9 +48,6 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
         
     return (
         <div className="chat-container">
-        {/* <div className="chatHead" >
-        <h1 className="chat-header">CHAT</h1>
-        </div> */}
         <div className="user-head" >
         <h3 style={{textShadow: color}} className="chat-header">{otherUser?.username}</h3>
         </div>

@@ -5,9 +5,9 @@ import Navbar from './Navbar'
 import Home from "./Home";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
+const {VITE_BASE_URL} = import.meta.env;
 
-
-const socket = io("http://localhost:5001");
+const socket = io(VITE_BASE_URL);
 
 
 function App() {
