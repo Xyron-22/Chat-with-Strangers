@@ -132,3 +132,9 @@
     }
    
 }
+
+@media only screen and (max-width: 450px) {
+    .chat-users-container:focus-within  {
+        margin-bottom: 25vh;
+    }
+}

@@ -205,12 +205,15 @@
         border-radius: 0 2vw 2vw 0;
     }
     .button1 {
-        font-size: 1rem;
+        font-size: .8rem;
     }
     .theme-header {
         margin-bottom: 1.5vh;
         font-size: 1rem;
-    }   
+    }
+    .light {
+        font-size: .5rem;
+    }
 }
 
 /*Responsive Screen for extra small devices*/

@@ -164,6 +164,7 @@ body {
     }
     .login-register {
         width: 30vw;
+        height: 5vh;
     }
 }
 
@@ -183,5 +184,6 @@ body {
     }
     .login-register {
         width: 35vw;
+        height: 4vh;
     }
   }
