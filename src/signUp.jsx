@@ -22,7 +22,7 @@ const SignUp = ({setUserId, color}) => {
             if (data === "User already exist" || data === "User does not exist") return setMessage(data)
             localStorage.setItem("profile", JSON.stringify(data))
             setUserId(data);
-            history("/#/home") // test
+            history("/home") 
             setUsername("")
             setPassword("")
         } else {
