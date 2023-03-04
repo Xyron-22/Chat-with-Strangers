@@ -3,7 +3,7 @@ import {io} from "socket.io-client";
 import SignUp from './signUp';
 import Navbar from './Navbar'
 import Home from "./Home";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { HashRouter, Route, Routes} from "react-router-dom";
 
 const {VITE_BASE_URL} = import.meta.env;
 
@@ -19,14 +19,14 @@ function App() {
    
   return (
     <>
-    <BrowserRouter>
+    <HashRouter>
     <Navbar color={color}></Navbar>
     <Routes>
       <Route path='/home' element={<Home setColor={setColor} color={color} setUserId={setUserId} userId={userId} socket={socket} hideForm={hideForm} setHideForm={setHideForm} otherUser={otherUser} setOtherUser={setOtherUser}></Home>}></Route>
       <Route path='/' element={<SignUp userId={userId} setUserId={setUserId} color={color}></SignUp>}>
       </Route>
     </Routes>
-    </BrowserRouter>
+    </HashRouter>
     
     </>
   )
