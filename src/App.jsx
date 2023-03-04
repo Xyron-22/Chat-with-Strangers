@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter>
     <Navbar color={color}></Navbar>
     <Routes>
-      <Route path='/home' element={<Home setColor={setColor} color={color} setUserId={setUserId} userId={userId} socket={socket} hideForm={hideForm} setHideForm={setHideForm} otherUser={otherUser} setOtherUser={setOtherUser}></Home>}></Route>
+      <Route path='/#/home' element={<Home setColor={setColor} color={color} setUserId={setUserId} userId={userId} socket={socket} hideForm={hideForm} setHideForm={setHideForm} otherUser={otherUser} setOtherUser={setOtherUser}></Home>}></Route>
       <Route path='/' element={<SignUp userId={userId} setUserId={setUserId} color={color}></SignUp>}>
       </Route>
     </Routes>
