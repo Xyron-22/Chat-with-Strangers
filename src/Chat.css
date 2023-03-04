@@ -9,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid black; */
     height: 80px;
     width: 250px;
     margin: 0 0 30px 0;
@@ -36,7 +35,6 @@
     padding-top: 20px;
     width: 40vw;
     height: 50vh;
-    /* border: 1px solid black; */
     box-shadow: 0 3px 10px gray;
     border-radius: 10px;
     background-color: white;
@@ -59,7 +57,6 @@
     position: relative; 
     background-color:  #FAA0A0;
     border-radius:10px;
-    /* border: 1px solid gray;  */
     padding:10px 10px; 
     height: auto; 
     width: fit-content;
@@ -76,7 +73,6 @@
     position: relative;
     background-color: #77DD77;
     border-radius:10px;
-    /* border: 1px solid gray;  */
     padding:10px 10px; 
     height: auto; 
     width: fit-content;
@@ -95,8 +91,6 @@
     overflow-y: auto;
     width: 100%;
     border-radius: 10px 0 0 10px;
-    /* border: 1px solid black; */
-    /* border-top: none; */
     resize: none;
     box-shadow: 0 3px 10px gray;
     font-weight: bold;
@@ -105,7 +99,6 @@
 }
 .button {
     border-radius: 0 10px 10px 0;
-    /* border: 1px solid black; */
     width: 60px;
     box-shadow: 0 3px 10px gray;
     background-color: black;
@@ -115,7 +108,20 @@
 .browse-button {
     display: none;
 }
-
+.date {
+    font-size: .6rem;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+}
+.single-chat-user {
+    display: flex;
+    justify-content: flex-end;
+}
+.single-chat-other-user {
+    display: flex;
+    justify-content: flex-start;
+}
 
 @media only screen and (max-width: 1024px) {
     .chat-body-inside {
@@ -136,5 +142,14 @@
 @media only screen and (max-width: 450px) {
     .chat-users-container:focus-within  {
         margin-bottom: 25vh;
+    }
+    .chat-body-inside {
+        width: 95vw;
+    }
+    .chat-footer {
+        width: 95vw;
+    }
+    .user-head {
+        width: 95vw;
     }
 }

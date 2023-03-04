@@ -77,7 +77,7 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
     //     console.log("this logs every 5 secs")
     //     setUsers(data)
     //   })
-    // }, 3000)
+    // }, 2000)
     // return () => {
     //   clearInterval(interval)
     // }
@@ -85,6 +85,7 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
   
 
     return (
+      <>
         <div className="app-container">
             <div className="theme-container">
                 <div className="themes">
@@ -116,12 +117,15 @@ const Home = ({socket, hideForm, otherUser, userId, setOtherUser, setHideForm, s
             <div style={{textShadow: color}} className="createdAt"><div className="create">Created At</div><div>{createdAt.slice(0, 10)}</div></div>
           </div>           
         )
-      }))}
-                                                           
+      }))}                                                
     </div>
     </div>
+    <div className="footer-container">
+            <div className="footer">&#169; Developed by Xyron</div>
+        </div>
     </div>
     </div>
+    </>
     )
 }
 

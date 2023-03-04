@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import axios from "axios";
 
 
-const SignUp = ({setUserId, color}) => {
+const SignUp = ({setUserId, color, setHideForm}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [toggle, setToggle] = useState(false);
@@ -29,7 +29,12 @@ const SignUp = ({setUserId, color}) => {
             setMessage("Username and Password required")
         }
 };
-    
+    useEffect(() => {
+        if(JSON.parse(localStorage.getItem("profile"))) {
+            setHideForm(JSON.parse(localStorage.getItem("profile")))
+            history("/home")
+        }
+    }, [])
     
     return(
         <>
@@ -62,6 +67,9 @@ const SignUp = ({setUserId, color}) => {
             <div style={{textShadow: color}} className="signup-footer" onClick={() => setToggle(!toggle)}>
                 {toggle ? "Don't have an Account ? Sign up" : "Already have an Account ? Sign in"}
             </div> 
+            <div className="footer-container">
+                <div className="footer">&#169; Developed by Xyron</div>
+            </div>
         </div>
         </>
     )

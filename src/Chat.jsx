@@ -6,6 +6,7 @@ import "./Chat.css"
 const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
     const [currentMessage, setCurrentMessage] = useState("");
     const [arrMessage, setArrMessage] = useState([]);
+    const [showTime, setShowTime] = useState(false);
          
     const {VITE_BASE_URL} = import.meta.env;
     
@@ -15,10 +16,11 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
                 room: chatId,
                 author: hideForm?.username,
                 message: currentMessage.trim(),
-                time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+                time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+                date: new Date(Date.now()).getFullYear() + "/" + Number( new Date(Date.now()).getMonth() + 1) + "/" + new Date(Date.now()).getDate() //
             }
             await socket.emit("send_message", messageData);
-            setArrMessage([...arrMessage, {author: hideForm?.username, message: currentMessage, time: messageData.time}])
+            setArrMessage([...arrMessage, {author: hideForm?.username, message: currentMessage, time: messageData.time, date: messageData.date}]) //
             setCurrentMessage("");
         }
     }
@@ -28,7 +30,7 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
             sendMessage();
         }
     }
- 
+   
     useEffect(() => {
         const fetchChats = async () => {
             if (chatId) {
@@ -46,6 +48,7 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
     }, [socket, chatId, otherUser])
     
         
+    
     return (
         <div className="chat-container">
         <div className="user-head" >
@@ -56,13 +59,23 @@ const Chat = ({socket, chatId, hideForm, otherUser, color}) => {
             return object.author !== hideForm.username ? (
                 <>
                 <div className="other-user">
-                <div className="other-user-chat">{object?.message}{i === arrMessage.length - 1 && <div className="time">{object?.time}</div>}</div>
+                    <div>
+                        <div onClick={() => setShowTime(!showTime)}  className="other-user-chat">{object?.message}{showTime === false && i === arrMessage.length - 1 && <div className="time">{object?.time}</div>}</div>
+                        <div className="single-chat-other-user">
+                        {showTime && <div className="date">{object?.date} : {object?.time}</div>}
+                        </div>
+                    </div>
                 </div>
                 </>
             ) : (
                 <>
                 <div className="user">
-                <div className="user-chat">{object?.message}{i === arrMessage.length - 1 && <div className="time">{object?.time}</div>}</div>
+                    <div >
+                        <div className="single-chat-user">
+                        <div onClick={() => setShowTime(!showTime)}  className="user-chat">{object?.message}{showTime === false && i === arrMessage.length - 1 && <div className="time">{object?.time}</div>}</div>
+                        </div>
+                        {showTime && <div className="date">{object?.date} : {object?.time}</div>}
+                    </div>
                 </div>
                 </>
             )

@@ -7,7 +7,6 @@ body {
 }
 .signup-container {
     width: 40vw; 
-    /* border: 1px solid black;  */
     height: 600px;
     background-color: white;
     border-radius: 10px;
@@ -126,11 +125,18 @@ body {
 .alert {
     color: red;
 }
+.footer-container {
+    display: flex;
+    justify-content: center;
+    margin: 1vh 1vw;
+}
+.footer {
+    font-size: 1rem;
+}
 ::-webkit-scrollbar {
    width: 0;
 }
 ::-webkit-input-placeholder {
-    /* font-size: 1rem; */
     text-align: center;
 }
 
