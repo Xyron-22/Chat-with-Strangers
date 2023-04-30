@@ -5,6 +5,7 @@ Feb 2023 - Feb 2023
 Real time Chat application that gives you flexibility to send messages to anyone that is registered.
 
 ___FEATURES:___
+
 -Fully responsive
 
 -Fully functional and interactive
